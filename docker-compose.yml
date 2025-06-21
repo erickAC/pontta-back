@@ -1,0 +1,33 @@
+
+services:
+  app:
+    build: ./
+    ports:
+      - "8080:8080"
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=jdbc:postgresql://db:5432/pontta
+      - POSTGRES_USER=root
+      - POSTGRES_PASS=123
+    networks:
+      - backend
+  db:
+    image: postgres:latest
+    container_name: db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: root
+      POSTGRES_DB: pontta
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+        - backend
+
+networks:
+  backend: 
+volumes:
+  pgdata:
