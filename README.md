@@ -18,5 +18,8 @@ GET /clientes/:id
 PUT /clientes/:id
 ```
 ```
+DELETE /clientes/:id
+``` 
+```
 POST /clientes
 ```
